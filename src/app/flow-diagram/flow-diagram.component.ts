@@ -44,7 +44,7 @@ export class FlowDiagramComponent {
       type: 'add',
       position: {
         x: node.position.x + 200,
-        y: 0
+        y: node.position.y
       }
     }
     this.addRightNode(node, addNode)
@@ -59,12 +59,35 @@ export class FlowDiagramComponent {
       type: 'if',
       position: {
         x: node.position.x + 200,
-        y: 0
+        y: node.position.y
       }
     }
     this.addRightNode(node, condNode)
 
-    this.addAddNode(condNode);
+    const thenNode: iFlowNode = {
+      id: '',
+      label: '',
+      type: 'then',
+      position: {
+        x: condNode.position.x + 200,
+        y: condNode.position.y
+      }
+    }
+
+    const elseNode: iFlowNode = {
+      id: '',
+      label: '',
+      type: 'else',
+      position: {
+        x: condNode.position.x,
+        y: condNode.position.y + 200
+      }
+    }
+
+    this.addRightNode(condNode, thenNode)
+    this.addBelowNode(condNode, elseNode)
+
+    this.addAddNode(thenNode);
   }
 
   // Add right node to current node
@@ -79,21 +102,10 @@ export class FlowDiagramComponent {
   }
 
   // Add bottom node to current node
-  addBelowNode(node: iFlowNode) {
-    const newNode: iFlowNode = {
-      id: `node-${this.nodeCounter++}`,
-      label: `Node ${this.nodeCounter}`,
-      type: 'input',
-      position: {
-        x: node.position.x,
-        y: node.position.y + this.nodeHeight + 100,
-      },
-      data: {},
-    };
-
+  addBelowNode(node: iFlowNode, bellowNode: iFlowNode) {
     node.hasBottom = true;
 
-    this.nodes.push(newNode);
+    this.nodes.push(bellowNode);
     // this.links.push({
     //   from: node.id,
     //   to: newNode.id,

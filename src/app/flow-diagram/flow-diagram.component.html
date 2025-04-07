@@ -21,6 +21,16 @@
         +
       </div>
 
+      <!-- THEN BUTTON -->
+      <div *ngIf="node?.type == 'then'" [ngClass]="node.type" (click)="addConditionNode(node)">
+        Si
+      </div>
+
+      <!-- ELSE BUTTON -->
+      <div *ngIf="node?.type == 'else'" [ngClass]="node.type" (click)="addConditionNode(node)">
+        No
+      </div>
+
       <!-- CONDITION BUTTON -->
       <div *ngIf="node?.type == 'condition'" [ngClass]="node.type" (click)="addConditionNode(node)">
         Condicion

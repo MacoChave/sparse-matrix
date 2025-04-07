@@ -79,6 +79,54 @@
   }
 }
 
+.then {
+  position: relative;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  background: blue;
+  color: lightblue;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 50;
+    right: 0;
+    width: 200px;
+    height: 3px;
+    background: lightgray;
+    z-index: -10;
+  }
+}
+
+.else {
+  position: relative;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  background: red;
+  color: lightcoral;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    right: 50;
+    width: 3px;
+    height: 200px;
+    background: lightgray;
+    z-index: -10;
+  }
+}
+
 .condition {
   position: relative;
   display: flex;
