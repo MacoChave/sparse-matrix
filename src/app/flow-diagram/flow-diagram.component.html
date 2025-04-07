@@ -1,19 +1,42 @@
 <div class="flow-container">
   <!-- Render nodes -->
   <ng-container *ngFor="let node of nodes">
-    <div class="flow-node" [style.left.px]="node.position.x" [style.top.px]="node.position.y">
+    <!-- <div class="flow-node" [style.left.px]="node.position.x" [style.top.px]="node.position.y">
       <strong>{{ node.label }}</strong>
       <div class="node-type"> ({{ node.type }}) </div>
-
       <div class="node-actions">
         <button *ngIf="!node.hasRight" (click)="addRightNode(node)">+ Derecha</button>
         <button *ngIf="!node.hasBottom" (click)="addBelowNode(node)">+ Abajo</button>
       </div>
+    </div> -->
+
+    <div class="flow-node" [style.left.px]="node.position.x" [style.top.px]="node.position.y">
+      <!-- NODO -->
+      <div *ngIf="node?.type == 'start'" [ngClass]="node.type">
+        <strong> {{ node.label }} </strong>
+      </div>
+  
+      <!-- ADD BUTTON -->
+      <div *ngIf="node?.type == 'add'" [ngClass]="node.type" (click)="addConditionNode(node)">
+        +
+      </div>
+
+      <!-- CONDITION BUTTON -->
+      <div *ngIf="node?.type == 'condition'" [ngClass]="node.type" (click)="addConditionNode(node)">
+        Condicion
+      </div>
+
+      <!-- IF BUTTON -->
+      <div *ngIf="node?.type == 'if'" [ngClass]="node.type">
+        <strong>If node</strong>
+        <p>Condicion</p>
+      </div>
     </div>
+    
   </ng-container>
 
   <!-- Render connections -->
-  <svg class="flow-lines">
+  <!-- <svg class="flow-lines">
     <defs>
       <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
         <path d="M0,0 L0,6 L9,3 z" fill="black" />
@@ -25,6 +48,6 @@
         [attr.y2]="getNodePosition(link.to).y + nodeHeight / 2" stroke="black" stroke-width="2"
         marker-end="url(#arrow)" />
     </ng-container>
-  </svg>
+  </svg> -->
 
 </div>

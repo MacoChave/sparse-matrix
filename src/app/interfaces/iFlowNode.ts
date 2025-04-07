@@ -1,7 +1,7 @@
 export interface iFlowNode {
   id: string;
   label: string;
-  type: 'start' | 'end' | 'action' | 'condition' | 'input' | 'output'; // Tipo de nodo
+  type: 'start' | 'add' | 'end' | 'action' | 'condition' | 'if' | 'input' | 'output'; // Tipo de nodo
   position: {
     x: number;
     y: number;
