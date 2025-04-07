@@ -1,0 +1,45 @@
+.flow-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* background: #f8f9fa; */
+}
+
+.flow-node {
+  position: absolute;
+  width: 100px;
+  height: 80px;
+  background: #007bff;
+  border: 2px solid #0056b3;
+  color: white;
+  border-radius: 8px;
+  padding: 5px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.flow-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevent mouse events on lines */
+  z-index: 0;
+}
+
+.node-actions {
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.controls {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+}
