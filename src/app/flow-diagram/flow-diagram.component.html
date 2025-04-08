@@ -1,48 +1,59 @@
 <div class="flow-container">
   <!-- Render nodes -->
   <ng-container *ngFor="let node of nodes">
-    <!-- <div class="flow-node" [style.left.px]="node.position.x" [style.top.px]="node.position.y">
-      <strong>{{ node.label }}</strong>
-      <div class="node-type"> ({{ node.type }}) </div>
-      <div class="node-actions">
-        <button *ngIf="!node.hasRight" (click)="addRightNode(node)">+ Derecha</button>
-        <button *ngIf="!node.hasBottom" (click)="addBelowNode(node)">+ Abajo</button>
-      </div>
-    </div> -->
 
     <div class="flow-node" [style.left.px]="node.position.x" [style.top.px]="node.position.y">
       <!-- NODO -->
-      <div *ngIf="node?.type == 'start'" [ngClass]="node.type">
+      <div *ngIf="node?.type == FlowNodeType.START" [ngClass]="node.type">
         <strong> {{ node.label }} </strong>
       </div>
-  
+
       <!-- ADD BUTTON -->
-      <div *ngIf="node?.type == 'add'" [ngClass]="node.type" (click)="addConditionNode(node)">
+      <div *ngIf="node?.type == FlowNodeType.ADD" [ngClass]="node.type" (click)="openModal(node, 'right')">
         +
       </div>
 
-      <!-- THEN BUTTON -->
-      <div *ngIf="node?.type == 'then'" [ngClass]="node.type" (click)="addConditionNode(node)">
-        Si
-      </div>
-
-      <!-- ELSE BUTTON -->
-      <div *ngIf="node?.type == 'else'" [ngClass]="node.type" (click)="addConditionNode(node)">
-        No
+      <!-- IF BUTTON -->
+      <div *ngIf="node?.type === FlowNodeType.IF" [ngClass]="node.type">
+        <strong>If node</strong>
       </div>
 
       <!-- CONDITION BUTTON -->
-      <div *ngIf="node?.type == 'condition'" [ngClass]="node.type" (click)="addConditionNode(node)">
-        Condicion
+      <div *ngIf="node?.type == FlowNodeType.CONDITION" [ngClass]="node.type">
+        <p>Condición</p>
+        <p>Evaluar</p>
       </div>
 
-      <!-- IF BUTTON -->
-      <div *ngIf="node?.type == 'if'" [ngClass]="node.type">
-        <strong>If node</strong>
-        <p>Condicion</p>
+      <!-- THEN BUTTON -->
+      <div *ngIf="node?.type == FlowNodeType.THEN" [ngClass]="node.type">
+        <p>SI</p>
       </div>
+
+      <!-- ELSE BUTTON -->
+      <div *ngIf="node?.type == FlowNodeType.ELSE" [ngClass]="node.type">
+        <p>NO</p>
+      </div>
+
+      <!-- PROCESS BUTTON -->
+      <div *ngIf="node?.type === FlowNodeType.PROCESS" [ngClass]="node.type">
+        <p>PROCESS</p>
+      </div>
+
+      <!-- END BUTTON -->
+      <div *ngIf="node?.type === FlowNodeType.END" [ngClass]="node.type">
+        <strong> FIN </strong>
+      </div>
+
     </div>
-    
+
+    <!-- CLEAN CANVAS -->
+    <button class="fab__icon" (click)="cleanNodes()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" stroke-miterlimit="10" width="24" height="24" viewBox="0 0 24 24"
+        data-icon="SvgClearList" aria-hidden="true">
+        <path d="M3 12h18M3 6h10.867M3 18h18m0-14l-4 4m0-4l4 4"></path>
+      </svg>
+    </button>
   </ng-container>
 
   <!-- Render connections -->
@@ -59,5 +70,8 @@
         marker-end="url(#arrow)" />
     </ng-container>
   </svg> -->
+
+  <app-new-flow-node [visible]="isModalOpen" (selectedNodeType)="onNodeTypeSelected($event)"
+    (close)="closeModal()"></app-new-flow-node>
 
 </div>
