@@ -1,0 +1,10 @@
+<div class="modal" *ngIf="visible">
+  <div class="modal-content">
+    <h3>Selecciona el tipo de nodo</h3>
+    <button class="btn__primary" (click)="select(FlowNodeType.PROCESS)">Process</button>
+    <button class="btn__primary" (click)="select(FlowNodeType.CONDITION)">Condición</button>
+    <button class="btn__primary" (click)="select(FlowNodeType.END)">Fin</button>
+    <br>
+    <button class="btn__cancel" (click)="emitClose()">Cancelar</button>
+  </div>
+</div>

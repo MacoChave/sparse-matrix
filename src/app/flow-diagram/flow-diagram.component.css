@@ -17,42 +17,20 @@
   border-radius: 8px;
   padding: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
+  z-index: 100;
 }
 
-.flow-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Prevent mouse events on lines */
-  z-index: 0;
-}
-
-.node-actions {
-  margin-top: 6px;
-  display: flex;
-  justify-content: space-between;
-  gap: 4px;
-}
-
-.controls {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  display: flex;
-  gap: 10px;
-}
-
+/* START NODE ON FLOW DIAGRAM */
 .start {
+  position: relative;
   display: flex;
   place-content: center;
   place-items: center;
-  width: 100%;
-  height: 100%;
-  background: blue;
-  color: lightblue;
+  width: 90px;
+  height: 90px;
+  background: lightgreen;
+  color: green;
+  border-radius: 50%;
 }
 
 .add {
@@ -62,14 +40,62 @@
   place-items: center;
   width: 48px;
   height: 48px;
-  background: green;
-  color: lightgreen;
+  background: lightgray;
+  color: gray;
   border-radius: 50%;
   cursor: pointer;
 
   &::after {
     position: absolute;
-    content: '';
+    content: "";
+    top: 50;
+    right: 0;
+    width: 200px;
+    height: 3px;
+    background: lightgray;
+    z-index: -10;
+    opacity: 0.5;
+  }
+}
+
+/* IF ON FLOW DIAGRAM */
+.if {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: lightcoral;
+  color: red;
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: 50;
+    right: 0;
+    width: 200px;
+    height: 3px;
+    background: lightgray;
+    z-index: -10;
+  }
+}
+
+.condition {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: lightgoldenrodyellow;
+  color: goldenrod;
+
+  &::after {
+    position: absolute;
+    content: "";
     top: 50;
     right: 0;
     width: 200px;
@@ -86,14 +112,13 @@
   place-items: center;
   width: 48px;
   height: 48px;
-  background: blue;
-  color: lightblue;
+  background: lightblue;
+  color: blue;
   border-radius: 50%;
-  cursor: pointer;
 
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     top: 50;
     right: 0;
     width: 200px;
@@ -110,14 +135,13 @@
   place-items: center;
   width: 48px;
   height: 48px;
-  background: red;
-  color: lightcoral;
+  background: lightpink;
+  color: red;
   border-radius: 50%;
-  cursor: pointer;
 
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     bottom: 0;
     right: 50;
     width: 3px;
@@ -127,17 +151,20 @@
   }
 }
 
-.condition {
+/* PROCESS NODE ON FLOW DIAGRAM */
+.process {
   position: relative;
   display: flex;
   place-content: center;
   place-items: center;
-  background: lightgoldenrodyellow;
-  color: green;  
-  
+  width: 100%;
+  height: 100%;
+  background: lightblue;
+  color: blue;
+
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     top: 50;
     right: 0;
     width: 200px;
@@ -147,24 +174,47 @@
   }
 }
 
-
-.if {
+/* END NODE ON FLOW DIAGRAM */
+.end {
   position: relative;
   display: flex;
-  flex-direction: column;
   place-content: center;
   place-items: center;
-  background: yellow;
-  color: green;  
-  
+  width: 90px;
+  height: 90px;
+  background: lightcoral;
+  color: red;
+  border-radius: 50%;
+
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     top: 50;
     right: 0;
     width: 200px;
     height: 3px;
     background: lightgray;
     z-index: -10;
+  }
+}
+
+.fab__icon {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  background: #0056b3;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: #004494;
   }
 }
